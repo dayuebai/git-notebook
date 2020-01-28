@@ -66,6 +66,9 @@ Temporary Items
 # *.iml
 # *.ipr
 
+# Remove .idea/
+.idea/
+
 # CMake
 cmake-build-*/
 
