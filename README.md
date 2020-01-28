@@ -1,2 +1,13 @@
-# git-notebook
-This repo serves to record what I learned about Git while working.
+# Git 学习笔记
+
+## 前言
+
+我在本科毕业前有过将近两年的Git使用经验。最开始学习Git是通过阅读廖雪峰老师的教程，后来在做科研和实习时有了Git更多的使用经验。
+遗憾的是一直以来并没有系统地学习Git，也没有对Git的使用经验做过整理。最近本科毕业后，我在实习中使用Git时获得些新的收获，所以想借此机会
+结合廖雪峰老师的教程，对Git做一次系统梳理，也将个人使用经验添加在笔记中作为日后回顾。此笔记适合对Git有使用经验的人阅读，因为我并不会很详细地介绍Git基础知识,
+而是会更多地介绍我个人对Git的使用经验和理解。推荐刚接触Git的小伙伴们详细阅读 [廖雪峰老师的Git教程](https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424)。
+此笔记中如有需改进或错误的地方，欢迎读者指正。目前联系方式：[dayueb26@gmail.com](dayueb26@gmail.com).
+
+参考文档：
+
+* [廖雪峰Git教程](https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424)
