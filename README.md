@@ -36,15 +36,46 @@ Git是一个分布式版本控制系统。
 ## Git vs SVN
 
 我有过一小段SVN使用经验，个人体会Git相比SVN另一大优势就是提供良好的分支管理（成本很低）。Git使用者可以创建任意多个不同分支用来处理不同的任务：bug fix，new feature，etc. 在建立新分支时
-Git只会存储diff信息，并不会为每个新分支存储整个代码库信息，这使得创建新分支成本低，速度快。SVN其实也提供了分支管理，但是使用起来就没有Git那么顺手了（个人体验）。
+Git只会存储diff信息，并不会为每个新分支存储整个代码库信息，这使得创建新分支成本低、速度快。SVN其实也提供了分支管理，但是使用起来就没有Git那么顺手了（个人体验）。
 
 ## 工作区 vs 暂存区 vs 版本库
 
+1. 工作区(Working directory)：即为我们日常工作的目录。
+
+2. 暂存区(Stage/Index)：当我们在任意一个工作目录下执行`git init`指令，我们就把当前工作目录变成了一个版本库。执行`ls -a`指令可以发现一个名为`.git`的目录，这个目录储存当前版本库的诸多信息，一旦删掉，这个目录就不再是一个版本库了。
+   在版本库中，有一部分区域被命名为暂存区（stage/index), `git add`指令就可以将untracked file/modified file加入暂存区中，`git commit` 默认将暂存区中所有文件提交到版本库当前分支。
+   
+3. 版本库：`git init`除了在版本库中创建了一个暂存区，还创建了一个默认名为`master`的分支和一个名为`HEAD`的指针。使用一些图形可视化工具可以清楚的看到Git将提交的每一个版本穿成一条时间线，**HEAD指针始终指向着当前版本**。
+
 ## 分支管理
+
+
 
 ## 远程仓库
 
+
+
 ## Git 自定义
 
+## 其他注意事项
+
+1. Git这类的版本控制系统只能跟踪文本文件的改动，二进制文件虽然也可在版本控制系统中管理，但是只能追踪文件大小、文件mode等变化，并不能跟踪其内容变化。
+    
+2. Git可以追踪file mode 变化，例如：我们通过`chmod a+x file_name` 指令将一个文件变成可执行文件，再执行`git status`就会看到这个文件出现在 not staged change中，通过`git diff`可以发现mode发生变化。
+
 ## Git常用指令汇总&示例
+
+0. git init
+1. git add 
+2. git commit
+3. git log --pretty=oneline
+4. git reset --hard Head
+5. git reflog
+6. git diff
+7. git checkout --file (实际上是用版本库里的版本替代工作区中的版本，无论该文件是被修改还是删除，但前提是版本库中要存在该文件版本)
+8. git reset HEAD file （将添加在暂存区的文件移动回工作区，修改状态变为unstaged, 可以再通过`git checkout -- file`指令丢弃当前修改）
+9. git rm file (对比 git add)
+
+## FAQ
+
     
