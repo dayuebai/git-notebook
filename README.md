@@ -53,12 +53,23 @@ Git只会存储diff信息，并不会为每个新分支存储整个代码库信�
 
 ## 远程仓库
 
-远程仓库就是一个云端仓库存储在中央服务器上，例如世界上著名的开源代码托管网站Github。Github为广大开发者提供了方便快捷免费创建免费仓库的服务。通过远程仓库，我们可以将本地版本库中版本推送到
-云端，与团队中其他成员同步代码。在工业界，很多公司出于安全、隐私的角度考虑，通常会由企业IT部门搭建一个运行git的服务器，再建设企业内部类似于Github的网站。其实Github也为企业推出了Github Enterprise （企业版GitHub），
-但是有些企业出于保护隐私的目的，还是更愿意使用自己造的"轮子"。
+1. 简介
+    远程仓库就是一个云端仓库存储在中央服务器上，例如世界上著名的开源代码托管网站Github。Github为广大开发者提供了方便快捷免费创建免费仓库的服务。通过远程仓库，我们可以将本地版本库中版本推送到
+    云端，与团队中其他成员同步代码。在工业界，很多公司出于安全、隐私的角度考虑，通常会由企业IT部门搭建一个运行git的服务器，再建设企业内部类似于Github的网站。其实Github也为企业推出了Github Enterprise （企业版GitHub），
+    但是有些企业出于保护隐私的目的，还是更愿意使用自己造的"轮子"。
+    
+2. 连接
+    本地Git仓库与Github远程仓库连接有2种方式：一种是通过账号密码(https传输），另一种通过ssh加密传输。通过ssh加密传输需要先在本地创建ssh key，将public key（id_rsa.pub）粘到Github上，这样Github就可以通过RSA验证是不是你本人推送的commit。
+    有条件的小伙伴推荐使用ssh连接，因为https会慢一点，但是公司有可能只开放http/https端口，自己可以根据实际情况作出调整。
+    如果你想将你本地的提交推送到别人的远程仓库，需要他将你的公钥加入他的账户中，或者在Github上添加你为collaborator。当然你还可以通过fork repo之后以提交PR的形式commit，但这就是另一种工作流了，之后可以介绍。
+    注意千万不要将private key（id_rsa）交给任何人。以后有机会可以详细介绍下rsa加密算法。
+    
+3. 本地/远程仓库关联
+    当你从远程仓库clone下来一个仓库到本地，本地仓库默认与这个远程仓库关联，远程仓库默认名为origin。你还可以在这基础上与更多其他远程仓库进行关联。可以通过`git remote add <name> <url>`指令实现。`git remote -v`指令可查看所有远程仓库关联情况。
+    
+4. 推送
+    `git push <remote repo name> <branch name>`指令可以实现推送提交。`-u` option可以在第一次提交时使用，因为第一次提交时当前branch还没有和远程分支建立关联，添加`-u`参数就可以在提交同时与远程branch建立关联，这个参数其实就相当于`--set-upstream`。
 
-本地Git仓库与Github远程仓库连接有2种方式：一种是通过账号密码(https传输），另一种通过ssh加密传输。通过ssh加密传输需要先在本地创建ssh key，将public key（id_rsa.pub）粘到Github上，这样Github就可以通过RSA验证是不是你本人推送的commit。
-注意千万不要将private key（id_rsa）交给任何人。以后有机会可以详细介绍下rsa加密算法。
 
 ## Git 自定义
 
@@ -80,6 +91,7 @@ Git只会存储diff信息，并不会为每个新分支存储整个代码库信�
 7. git checkout --file (实际上是用版本库里的版本替代工作区中的版本，无论该文件是被修改还是删除，但前提是版本库中要存在该文件版本)
 8. git reset HEAD file （将添加在暂存区的文件移动回工作区，修改状态变为unstaged, 可以再通过`git checkout -- file`指令丢弃当前修改）
 9. git rm file (对比 git add)
+10. git push -u origin master (-u option)
 
 ## FAQ
 
